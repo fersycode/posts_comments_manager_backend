@@ -1,0 +1,77 @@
+[
+  {
+    "title": "Getting Started with NestJS",
+    "body": "NestJS is a progressive Node.js framework for building efficient and scalable server-side applications. It uses TypeScript by default and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming). Under the hood, NestJS makes use of robust HTTP Server frameworks like Express and optionally can be configured to use Fastify as well.",
+    "author": "John Doe"
+  },
+  {
+    "title": "Angular Signals: The Future of Reactivity",
+    "body": "Angular Signals provide a new way to handle reactivity in Angular applications. They offer better performance and a simpler mental model compared to RxJS for certain use cases. Signals are a reactive primitive that notify interested consumers when they change. They can be used to create computed values and effects that automatically update when their dependencies change.",
+    "author": "Jane Smith"
+  },
+  {
+    "title": "MongoDB Best Practices for Production",
+    "body": "When working with MongoDB in production, it's important to design your schema carefully, use indexes appropriately, and understand the difference between embedding and referencing documents. Always consider your query patterns when designing schemas. Use indexes on frequently queried fields, and monitor your database performance regularly using MongoDB Atlas or similar tools.",
+    "author": "Mike Johnson"
+  },
+  {
+    "title": "Understanding Docker Containers",
+    "body": "Docker allows you to package applications with all their dependencies into standardized units called containers. This ensures consistency across different environments, from development to production. Containers are lightweight, portable, and provide isolation without the overhead of virtual machines. They make deployment and scaling much easier.",
+    "author": "Sarah Williams"
+  },
+  {
+    "title": "JWT Authentication in Modern Web Applications",
+    "body": "JSON Web Tokens provide a stateless authentication mechanism that's perfect for modern web applications. They contain encoded information about the user and are cryptographically signed to prevent tampering. JWTs consist of three parts: header, payload, and signature. They can be stored in localStorage, sessionStorage, or as HTTP-only cookies.",
+    "author": "Robert Brown"
+  },
+  {
+    "title": "Reactive Forms in Angular: A Complete Guide",
+    "body": "Reactive forms in Angular provide a model-driven approach to handling form inputs whose values change over time. They offer more flexibility and control compared to template-driven forms. With reactive forms, you create the form model in the component class and bind it to the template. This approach makes it easier to test and provides better type safety.",
+    "author": "Emily Davis"
+  },
+  {
+    "title": "Mastering RxJS Operators",
+    "body": "RxJS provides a rich set of operators for transforming, filtering, and combining observable streams. Understanding operators like switchMap, mergeMap, concatMap, and combineLatest is essential for building reactive applications. Each operator has its specific use case: switchMap cancels previous subscriptions, mergeMap runs them in parallel, and concatMap preserves order.",
+    "author": "David Martinez"
+  },
+  {
+    "title": "REST API Design Principles",
+    "body": "Good REST API design follows conventions for HTTP methods, status codes, and resource naming. It should be intuitive, consistent, and well-documented. Use nouns for resource names, proper HTTP methods (GET, POST, PUT, DELETE), and meaningful status codes. Version your API and provide clear error messages. Always consider pagination for list endpoints.",
+    "author": "Lisa Anderson"
+  },
+  {
+    "title": "TypeScript Advanced Types Explained",
+    "body": "TypeScript's advanced type system includes features like union types, intersection types, mapped types, and conditional types that enable powerful type safety. These features allow you to create flexible yet type-safe code. Union types let you specify that a value can be one of several types, while intersection types combine multiple types into one.",
+    "author": "Chris Taylor"
+  },
+  {
+    "title": "Bootstrap 5 Modern Layout Techniques",
+    "body": "Bootstrap 5 provides a powerful flexbox-based grid system and utility classes that make it easy to create responsive layouts without writing custom CSS. The framework has dropped jQuery dependency and improved its utility API. Use the grid system for layouts, spacing utilities for margins and padding, and flex utilities for alignment.",
+    "author": "Amanda White"
+  },
+  {
+    "title": "Clean Code Principles for JavaScript Developers",
+    "body": "Writing clean code is essential for maintainability and collaboration. Follow the Single Responsibility Principle, keep functions small and focused, use meaningful variable names, and write self-documenting code. Avoid deep nesting, prefer composition over inheritance, and always handle errors properly. Comments should explain why, not what.",
+    "author": "Michael Chen"
+  },
+  {
+    "title": "Introduction to Microservices Architecture",
+    "body": "Microservices architecture breaks down applications into small, independent services that communicate over network protocols. Each service focuses on a specific business capability and can be developed, deployed, and scaled independently. This approach offers flexibility but also introduces complexity in terms of service discovery, communication, and data consistency.",
+    "author": "Jessica Lee"
+  },
+  {
+    "title": "Git Best Practices for Teams",
+    "body": "Effective Git usage is crucial for team collaboration. Use meaningful commit messages following conventional commits, create feature branches, and use pull requests for code review. Keep commits atomic and focused on single changes. Rebase feature branches before merging to maintain a clean history. Use tags for releases and maintain a clear branching strategy.",
+    "author": "Daniel Kim"
+  },
+  {
+    "title": "Web Performance Optimization Strategies",
+    "body": "Optimizing web performance improves user experience and SEO rankings. Key strategies include minimizing bundle sizes, lazy loading components, optimizing images, leveraging browser caching, and using CDNs. Implement code splitting, tree shaking, and compression. Monitor performance using Lighthouse and Web Vitals. Always measure before and after optimization.",
+    "author": "Rachel Green"
+  },
+  {
+    "title": "Testing Strategies for Full-Stack Applications",
+    "body": "A comprehensive testing strategy includes unit tests, integration tests, and end-to-end tests. Unit tests verify individual components in isolation. Integration tests ensure different parts work together correctly. E2E tests validate complete user flows. Use Jest for unit testing, Supertest for API testing, and Cypress for E2E tests. Aim for meaningful coverage, not just high percentages.",
+    "author": "Kevin Park"
+  }
+]
