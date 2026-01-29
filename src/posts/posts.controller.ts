@@ -13,6 +13,7 @@ import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiResponse } from '../common/utils/api-response.util';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('posts')
 export class PostsController {
@@ -35,12 +36,14 @@ export class PostsController {
     );
   }
 
+  @Public()
   @Get()
   async findAll() {
     const posts = await this.postsService.findAll();
     return ApiResponse.success(posts, 'Posts retrieved successfully');
   }
 
+  @Public()
   @Get(':id')
   async findOne(@Param('id') id: string) {
     const post = await this.postsService.findOne(id);

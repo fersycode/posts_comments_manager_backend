@@ -12,6 +12,7 @@ import {
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { ApiResponse } from '../common/utils/api-response.util';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('comments')
 export class CommentsController {
@@ -24,6 +25,7 @@ export class CommentsController {
     return ApiResponse.created(comment, 'Comment created successfully');
   }
 
+  @Public()
   @Get()
   async findByPostId(@Query('postId') postId: string) {
     const comments = await this.commentsService.findByPostId(postId);

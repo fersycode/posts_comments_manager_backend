@@ -198,7 +198,7 @@ All API responses follow a standardized format:
 
 ## Future Enhancements
 
-- [ ] JWT Authentication
+- [✔] JWT Authentication
 - [ ] Pagination for posts list
 - [ ] Search and filtering
 - [ ] Rate limiting
@@ -212,4 +212,4 @@ Fersy Martínez: Created as part of a Full-Stack technical assessment.
 
 ## License
 
-This project is open source and available for educational purposes.
+This project is open source and available for educational purposes.  
