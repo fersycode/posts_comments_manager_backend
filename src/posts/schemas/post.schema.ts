@@ -12,6 +12,9 @@ export class Post extends Document {
   @Prop({ required: true })
   author: string;
 
+  @Prop({ default: null })
+  image: string;
+
   @Prop()
   createdAt: Date;
 

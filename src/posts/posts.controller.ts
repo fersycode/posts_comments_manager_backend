@@ -8,12 +8,17 @@ import {
   Put,
   HttpCode,
   HttpStatus,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { ApiResponse } from '../common/utils/api-response.util';
 import { Public } from '../auth/decorators/public.decorator';
+import { multerConfig } from '../common/config/multer.config';
 
 @Controller('posts')
 export class PostsController {
@@ -36,6 +41,47 @@ export class PostsController {
     );
   }
 
+  @Post('upload-image')
+  @HttpCode(HttpStatus.CREATED)
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  async uploadImage(@UploadedFile() file: Express.Multer.File) {
+    if (!file) {
+      throw new BadRequestException('No image file provided');
+    }
+
+    // Return the file information
+    const imageData = {
+      filename: file.filename,
+      originalname: file.originalname,
+      mimetype: file.mimetype,
+      size: file.size,
+      path: `/uploads/posts/${file.filename}`,
+      url: `http://localhost:3000/uploads/posts/${file.filename}`,
+    };
+
+    return ApiResponse.success(
+      imageData,
+      'Image uploaded successfully',
+    );
+  }
+
+  @Post('with-image')
+  @HttpCode(HttpStatus.CREATED)
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  async createWithImage(
+    @Body() createPostDto: CreatePostDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    let imagePath: string | null = null;
+    
+    if (file) {
+      imagePath = `/uploads/posts/${file.filename}`;
+    }
+
+    const post = await this.postsService.createWithImage(createPostDto, imagePath);
+    return ApiResponse.created(post, 'Post created successfully with image');
+  }
+
   @Public()
   @Get()
   async findAll() {
@@ -51,8 +97,19 @@ export class PostsController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    const post = await this.postsService.update(id, updatePostDto);
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  async update(
+    @Param('id') id: string,
+    @Body() updatePostDto: UpdatePostDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    let imagePath: string | null = updatePostDto['image'] || null; // Keep existing image if no new one
+    
+    if (file) {
+      imagePath = `/uploads/posts/${file.filename}`;
+    }
+
+    const post = await this.postsService.updateWithImage(id, updatePostDto, imagePath);
     return ApiResponse.success(post, 'Post updated successfully');
   }
 

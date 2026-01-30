@@ -14,6 +14,15 @@ export class PostsService {
     return createdPost.save();
   }
 
+  async createWithImage(createPostDto: CreatePostDto, imagePath: string | null): Promise<Post> {
+    const postData = {
+      ...createPostDto,
+      image: imagePath,
+    };
+    const createdPost = new this.postModel(postData);
+    return createdPost.save();
+  }
+
   async createBulk(createPostDtos: CreatePostDto[]): Promise<Post[]> {
     return this.postModel.insertMany(createPostDtos);
   }
@@ -34,7 +43,27 @@ export class PostsService {
     const updatedPost = await this.postModel
       .findByIdAndUpdate(id, updatePostDto, { new: true })
       .exec();
+    
+    if (!updatedPost) {
+      throw new NotFoundException(`Post with ID ${id} not found`);
+    }
+    return updatedPost;
+  }
 
+  async updateWithImage(
+    id: string,
+    updatePostDto: UpdatePostDto,
+    imagePath: string | null,
+  ): Promise<Post> {
+    const updateData = {
+      ...updatePostDto,
+      ...(imagePath && { image: imagePath }),
+    };
+
+    const updatedPost = await this.postModel
+      .findByIdAndUpdate(id, updateData, { new: true })
+      .exec();
+    
     if (!updatedPost) {
       throw new NotFoundException(`Post with ID ${id} not found`);
     }
