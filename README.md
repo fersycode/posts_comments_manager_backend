@@ -9,21 +9,48 @@ Backend API built with NestJS, MongoDB, and TypeScript for managing posts and co
 - **TypeScript** - Type-safe JavaScript
 - **Class Validator** - DTO validation
 - **Class Transformer** - Object transformation
+- **Docker** - Containerization
 
 ## Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
-- MongoDB Atlas account (or local MongoDB)
+- Docker installed on your machine
+- MongoDB Atlas account (credentials will be provided)
 
-## Installation
+## Quick Start with Docker
+
+### 1. Build the Docker Image
+
+```bash
+docker build -t nest-api .
+```
+
+### 2. Run the Application
+
+```bash
+docker run -p 3000:3000 \
+  -e MONGODB_URI="mongodb_connection_string" \
+  -v uploads_data:/app/uploads \
+  nest-api
+```
+
+**Note:** Replace `mongodb_connection_string` with the MongoDB URI provided separately for security reasons.
+
+### 3. Access the API
+
+The API will be available at `http://localhost:3000`
+
+## Alternative: Running Without Docker
+
+If you prefer to run the application locally without Docker:
+
+### Installation
 
 ```bash
 # Install dependencies
 npm install
 ```
 
-##  Configuration
+### Configuration
 
 Create a `.env` file in the root directory:
 
@@ -32,7 +59,7 @@ MONGODB_URI=mongodb_connection_string
 PORT=3000
 ```
 
-## Running the Application
+### Running
 
 ```bash
 # Development mode
@@ -42,71 +69,6 @@ npm run start:dev
 npm run build
 npm run start:prod
 ```
-
-The API will be available at `http://localhost:3000`
-
-## API Endpoints
-
-### Posts
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/posts` | Get all posts |
-| GET | `/posts/:id` | Get post by ID |
-| POST | `/posts` | Create a new post |
-| POST | `/posts/bulk` | Create multiple posts |
-| PUT | `/posts/:id` | Update a post |
-| DELETE | `/posts/:id` | Delete a post |
-
-### Comments
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/comments?postId={id}` | Get comments by post ID |
-| POST | `/comments` | Create a new comment |
-| DELETE | `/comments/:id` | Delete a comment |
-
-
-
-## Project Structure
-
-```
-src/
-├── app.module.ts           # Root module
-├── main.ts                 # Application entry point
-├── common/                 # Shared resources
-│   ├── filters/            # Exception filters
-│   │   └── all-exceptions.filter.ts
-│   ├── interceptors/       # Request/response interceptors
-│   │   ├── logging.interceptor.ts
-│   │   └── transform.interceptor.ts
-│   ├── utils/              # Utility functions
-│   │   └── api-response.util.ts
-│   ├── dto/                # Common DTOs
-│   │   └── pagination.dto.ts
-│   └── responses/          # Response interfaces
-│       ├── success-response.interface.ts
-│       ├── error-response.interface.ts
-│       └── paginated-response.interface.ts
-├── posts/                  # Posts module
-│   ├── posts.controller.ts
-│   ├── posts.service.ts
-│   ├── posts.module.ts
-│   ├── dto/
-│   │   ├── create-post.dto.ts
-│   │   └── update-post.dto.ts
-│   └── schemas/
-│       └── post.schema.ts
-└── comments/               # Comments module
-    ├── comments.controller.ts
-    ├── comments.service.ts
-    ├── comments.module.ts
-    ├── dto/
-    │   └── create-comment.dto.ts
-    └── schemas/
-        └── comment.schema.ts
-```
-
 ## Features
 
 ### Core Features
@@ -115,6 +77,7 @@ src/
 - MongoDB integration with Mongoose
 - Request validation with DTOs
 - Standardized API responses
+- Image upload support for posts
 
 ### Architecture & Code Quality
 - Modular architecture with feature modules
@@ -123,6 +86,8 @@ src/
 - Response transformation interceptor
 - Clean code principles
 - TypeScript strict mode
+- Docker containerization
+- Persistent images with Docker volume
 
 ### Validation
 - Input validation with class-validator
@@ -145,7 +110,7 @@ Import the `postman-collection.json` file included in the project to get:
 
 ## Bulk Upload
 
-Use the `posts-bulk-example.json` file to test bulk upload
+Use the `posts-bulk-example.json` file to test bulk upload functionality.
 
 ## CORS Configuration
 
@@ -189,6 +154,7 @@ All API responses follow a standardized format:
 - `title`: Required, minimum 3 characters
 - `body`: Required, minimum 10 characters
 - `author`: Required
+- `image`: Optional, file upload
 
 ### Comment
 - `postId`: Required, valid MongoDB ObjectId
@@ -196,15 +162,32 @@ All API responses follow a standardized format:
 - `email`: Required, valid email format
 - `body`: Required
 
+## Docker Volume
+
+The application uses a Docker volume (`uploads_data`) to persist uploaded images. This ensures that images are not lost when the container is stopped or removed.
+
+## Stopping the Application
+
+To stop the running container:
+
+```bash
+# Find the container ID
+docker ps
+
+# Stop the container
+docker stop <container_id>
+```
+
 ## Future Enhancements
 
 - [✔] JWT Authentication
+- [✔] Posts with images
+- [✔] Docker support
 - [ ] Pagination for posts list
 - [ ] Search and filtering
 - [ ] Rate limiting
 - [ ] API documentation with Swagger
 - [ ] Unit and integration tests
-- [ ] Docker support
 
 ## Author
 
@@ -212,4 +195,5 @@ Fersy Martínez: Created as part of a Full-Stack technical assessment.
 
 ## License
 
-This project is open source and available for educational purposes.  
+This project is open source and available for educational purposes.
+```
