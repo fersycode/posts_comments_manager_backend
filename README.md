@@ -112,7 +112,7 @@ Import the `postman-collection.json` file included in the project to get:
 - Pre-configured requests for all endpoints
 - Example request bodies
 - Environment variables setup
-
+- public workspace: https://www.postman.com/midle-cs/posts-and-comments-manager/collection/11132222-9fcea1e1-aaf8-45b6-8aaf-7f40d77b10e4/?action=share&creator=11132222&active-environment=11132222-263e77b4-7e33-440e-ae5b-5300edf6d271
 ## Bulk Upload
 
 Use the `posts-bulk-example.json` file to test bulk upload functionality.
