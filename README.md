@@ -29,11 +29,14 @@ docker build -t nest-api .
 ```bash
 docker run -p 3000:3000 \
   -e MONGODB_URI="mongodb_connection_string" \
+  -e JWT_SECRET="3cb0d3c67327a37970216a1bf7c7ffc5f4dcc633" \
+  -e JWT_EXPIRES_IN="7d" \
   -v uploads_data:/app/uploads \
   nest-api
 ```
 
-**Note:** Replace `mongodb_connection_string` with the MongoDB URI provided separately for security reasons.
+**Note 1:** Replace `mongodb_connection_string` with the MongoDB URI provided separately for security reasons.
+**Note 2:** Remember to execute the command on a single line on windows bash, or if Linux with "\"
 
 ### 3. Access the API
 
@@ -57,6 +60,8 @@ Create a `.env` file in the root directory:
 ```env
 MONGODB_URI=mongodb_connection_string
 PORT=3000
+JWT_SECRET=3cb0d3c67327a37970216a1bf7c7ffc5f4dcc633
+JWT_EXPIRES_IN=7d
 ```
 
 ### Running
